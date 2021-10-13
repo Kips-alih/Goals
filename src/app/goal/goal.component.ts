@@ -4,6 +4,7 @@ import {Goal} from '../goal';
 import { Quote } from '../quote-class/quote';
 import { GoalService } from '../goal-service/goal.service';
 import { AlertService } from '../alert-service/alert.service';
+import { QuoteRequestService } from '../quote-http/quote-request.service';
 
 
 @Component({
