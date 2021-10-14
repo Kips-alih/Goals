@@ -45,25 +45,27 @@ export class GoalComponent implements OnInit {
     }
     
   }
-  constructor(goalService:GoalService,alertService:AlertService,private http:HttpClient) {
+  constructor(goalService:GoalService,alertService:AlertService,private quoteService:QuoteRequestService) {
     this.goals = goalService.getGoals();
     this.alertService=alertService;
    }
 
   ngOnInit(): void {
-    interface ApiResponse{
-      author:string;
-      quote:string;
-    }
-
-    this.http.get<ApiResponse>("http://quotes.stormconsultancy.co.uk/random.json").subscribe(data=>{
-      // Successful Api request
-      this.quote= new Quote(data.author, data.quote) 
-    }, err=>{
-      this.quote= new Quote("Winston Churchill","Never never give up!");
-      console.log("An error occurred");
-    })
+    // interface ApiResponse{
+    //   author:string;
+    //   quote:string;
+      this.quoteService.quoteRequest()
+      this.quote = this.quoteService.quote
   }
+
+  //   this.http.get<ApiResponse>("http://quotes.stormconsultancy.co.uk/random.json").subscribe(data=>{
+  //     // Successful Api request
+  //     this.quote= new Quote(data.author, data.quote) 
+  //   }, err=>{
+  //     this.quote= new Quote("Winston Churchill","Never never give up!");
+  //     console.log("An error occurred");
+  //   })
+  // }
 
 }
 
